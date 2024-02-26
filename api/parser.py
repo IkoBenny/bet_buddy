@@ -22,6 +22,13 @@ def get_away_player_names(filename, amt):
                 stats.append(el)
     return stats
 
+#this function determines if a game finished in regular time.
+def is_overtime_game(box):
+    if box[6].isnumeric():
+        return True
+    else:
+        return False
+
 #this function utilizes Beautiful Soup API to parse an ESPN box score provided as HTML. It returns a list in CSV format. 
 def parse_espn_box(filename):
     stats = []
