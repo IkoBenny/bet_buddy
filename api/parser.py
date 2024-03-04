@@ -28,7 +28,7 @@ def get_away_box_score(filename, stats):
                 roster.append(athlete)
             else:
                 break
-    counter2 = 140
+    counter2 = len(roster) * 14
     dnp =0
     while not get_player_dnp(stats, counter2) == "done":
         dnp = dnp + 1
