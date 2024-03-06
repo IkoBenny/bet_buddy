@@ -83,7 +83,7 @@ def get_third_moneyline_winner_from_box(stats):
                 print(stats[normal_time_values_periods.away] + " - 3RD QTR MONEYLINE: NO")
                 print(stats[normal_time_values_periods.h] + " - 3RD QTR MONEYLINE: YES")
             else:
-                print("2ND QTR MONEYLINE: TIE")
+                print("3RD QTR MONEYLINE: TIE")
     else:
         if int(stats[overtime_values_periods.a_third]) > int(stats[overtime_values_periods.h_third]):
             print(stats[overtime_values_periods.away] + " - 3RD QTR MONEYLINE: YES")
