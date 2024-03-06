@@ -98,16 +98,16 @@ def get_third_moneyline_winner_from_box(stats):
 #this function determines the match ML winner.
 def get_moneyline_winner_from_box(stats):
     if not is_overtime_game(stats):
-        if int(stats[5]) > int(stats[11]):
-            print(stats[0] + " - MONEYLINE: NO")
-            print(stats[6] + " - MONEYLINE: YES")
+        if int(stats[normal_time_values_periods.a_total]) > int(stats[normal_time_values_periods.h_total]):
+            print(stats[normal_time_values_periods.away] + " - MONEYLINE: NO")
+            print(stats[normal_time_values_periods.h] + " - MONEYLINE: YES")
         else:
-            print(stats[0] + " - MONEYLINE: YES")
-            print(stats[6] + " - MONEYLINE: NO")
+            print(stats[normal_time_values_periods.away] + " - MONEYLINE: YES")
+            print(stats[normal_time_values_periods.h] + " - MONEYLINE: NO")
     else:
-        if int(stats[5]) > int(stats[11]):
-            print(stats[0] + " - MONEYLINE: YES")
-            print(stats[7] + " - MONEYLINE: NO")
+        if int(stats[overtime_values_periods.a_ot]) > int(stats[overtime_values_periods.h_ot]):
+            print(stats[overtime_values_periods.away] + " - MONEYLINE: YES")
+            print(stats[overtime_values_periods.home] + " - MONEYLINE: NO")
         else:
-            print(stats[0] + " - MONEYLINE: YES")
-            print(stats[7] + " - MONEYLINE: NO")
+            print(stats[overtime_values_periods.away] + " - MONEYLINE: YES")
+            print(stats[overtime_values_periods.home] + " - MONEYLINE: NO")
