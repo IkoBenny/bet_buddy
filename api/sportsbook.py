@@ -29,23 +29,23 @@ def get_moneyline_and_first_quarter_winner_from_box(stats):
 #this function determines the first quarter 3-way ML winner.
 def get_first_moneyline_winner_from_box(stats):
     if not is_overtime_game(stats):
-        if int(stats[1]) > int(stats[7]):
-            print(stats[0] + " - 1ST QTR MONEYLINE: YES")
-            print(stats[6] + " - 1ST QTR MONEYLINE: NO")
+        if int(stats[normal_time_values_periods.a_first]) > int(stats[normal_time_values_periods.h_first]):
+            print(stats[normal_time_values_periods.away] + " - 1ST QTR MONEYLINE: YES")
+            print(stats[normal_time_values_periods.h] + " - 1ST QTR MONEYLINE: NO")
         else:
-            if int(stats[1]) < int(stats[7]):
-                print(stats[0] + " - 1ST QTR MONEYLINE: NO")
-                print(stats[6] + " - 1ST QTR MONEYLINE: YES")
+            if int(stats[normal_time_values_periods.a_first]) < int(stats[normal_time_values_periods.h_first]):
+                print(stats[normal_time_values_periods.away] + " - 1ST QTR MONEYLINE: NO")
+                print(stats[normal_time_values_periods.h] + " - 1ST QTR MONEYLINE: YES")
             else:
                 print("1ST QTR MONEYLINE: TIE")
     else:
-        if int(stats[1]) > int(stats[8]):
-            print(stats[0] + " - 1ST QTR MONEYLINE: YES")
-            print(stats[7] + " - 1ST QTR MONEYLINE: NO")
+        if int(stats[overtime_values_periods.a_first]) > int(stats[overtime_values_periods.h_first]):
+            print(stats[overtime_values_periods.away] + " - 1ST QTR MONEYLINE: YES")
+            print(stats[overtime_values_periods.h] + " - 1ST QTR MONEYLINE: NO")
         else:
-            if int(stats[1]) < int(stats[8]):
-                print(stats[0] + " - 1ST QTR MONEYLINE: YES")
-                print(stats[7] + " - 1ST QTR MONEYLINE: NO")
+            if int(stats[overtime_values_periods.a_first]) < int(stats[overtime_values_periods.a_first]):
+                print(stats[overtime_values_periods.away] + " - 1ST QTR MONEYLINE: YES")
+                print(stats[overtime_values_periods.h] + " - 1ST QTR MONEYLINE: NO")
             else:
                 print("1ST QTR MONEYLINE: TIE")
     
