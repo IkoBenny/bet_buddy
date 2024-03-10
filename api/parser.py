@@ -83,6 +83,13 @@ def get_player_stats(box, counter):
             return "done"
     return stats
 
+#this function returns the Beautiful Soup object.
+def get_soup(filename):
+    stats = []
+    with open(filename) as fp:
+        soup = BeautifulSoup(fp, "html.parser")
+    return soup
+
 #this function utilizes Beautiful Soup API to parse an ESPN box score provided as HTML. It returns a list in CSV format. 
 def parse_espn_box(filename):
     stats = []

@@ -27,7 +27,7 @@ def get_moneyline_and_first_quarter_winner_from_box(stats):
                 print(stats[7] + " - FIRST QUARTER WINNER / MATCH WINNER: NO")
 
 #this function determines the first quarter 3-way ML winner.
-def get_first_moneyline_winner_from_box(stats):
+def get_moneyline_winner_from_box_first(stats):
     if not is_overtime_game(stats):
         if int(stats[normal_time_values_periods.a_first]) > int(stats[normal_time_values_periods.h_first]):
             print(stats[normal_time_values_periods.away] + " - 1ST QTR MONEYLINE: YES")
@@ -50,7 +50,7 @@ def get_first_moneyline_winner_from_box(stats):
                 print("1ST QTR MONEYLINE: TIE")
     
 #this function determines the second quarter 3-way ML winner.    
-def get_second_moneyline_winner_from_box(stats):
+def get_moneyline_winner_from_box_second(stats):
     if not is_overtime_game(stats):
         if int(stats[normal_time_values_periods.a_second]) > int(stats[normal_time_values_periods.h_second]):
             print(stats[normal_time_values_periods.away] + " - 2ND QTR MONEYLINE: NO")
@@ -73,7 +73,7 @@ def get_second_moneyline_winner_from_box(stats):
                 print("2ND QTR MONEYLINE: TIE")
 
 #this function determines the third quarter 3-way ML winner.             
-def get_third_moneyline_winner_from_box(stats):
+def get_moneyline_winner_from_box_third(stats):
     if not is_overtime_game(stats):
         if int(stats[normal_time_values_periods.a_third]) > int(stats[normal_time_values_periods.h_third]):
             print(stats[normal_time_values_periods.away] + " - 3RD QTR MONEYLINE: NO")
