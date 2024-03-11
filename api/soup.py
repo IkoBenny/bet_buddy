@@ -1,5 +1,5 @@
 class soup:
-    def _init(filename):
+    def _init(self, filename):
         self.soup_obj = get_soup(filename)
     
     #this function returns the Beautiful Soup object.
