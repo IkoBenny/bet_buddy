@@ -1,3 +1,5 @@
+from bs4 import BeautifulSoup
+
 class soup:
     def __init__(self, filename):
         self.soup_obj = get_soup(filename)
