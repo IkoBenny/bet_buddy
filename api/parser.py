@@ -10,7 +10,7 @@ def get_all_player_names(soup):
     return stats
 
 #this function displays the box score for away team in CSV format.
-def get_away_box_score(filename, stats):
+def get_away_box_score(soup_obj):
     players = 0
     roster = []
     athlete = [] 
@@ -38,6 +38,34 @@ def get_away_box_score(filename, stats):
     for name, player in zip(names, roster):
          roster.append(name)      
     print(roster)
+
+#this function displays the box score for both teams in CSV format.
+def get_box_score(soup_obj):
+    players = 0
+    roster = []
+    athlete = [] 
+    
+    stats = parse_espn_box(soup_obj)
+    print(len(stats))
+    
+    if is_overtime_game(stats):
+        print("ot")
+    else:
+        print("not ot")
+        is_no_dnps_available = (len(stats) - 12) % 14 == 0
+        if is_no_dnps_available:
+            for x in range(12, len(stats), 14):
+                if x == 12:
+                    athlete = get_player_stats(stats, x)
+                    players = players + 1
+                    roster.append(athlete)
+                else:
+                    print(stats[x])
+                    athlete = get_player_stats(stats, x)
+                    players = players + 1
+                    roster.append(athlete)
+        else:
+             print("dnps available for this game")
 
 #this function works identical to get_all_player_names(filename), with caveat that only away player names are returned. "amt" refers to the number of players listed on away team roster
 def get_away_player_names(soup, amt):
@@ -79,11 +107,7 @@ def get_player_stats(box, counter):
             return "done"
     return stats
 
-#this function returns the Beautiful Soup object.
-def get_soup(filename):
-    with open(filename) as fp:
-        soup = BeautifulSoup(fp, "html.parser")
-    return soup
+
 
 #this function utilizes Beautiful Soup API to parse an ESPN box score provided as HTML. It returns a list in CSV format. 
 def parse_espn_box(soup):
