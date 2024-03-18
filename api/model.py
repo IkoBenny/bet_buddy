@@ -1,19 +1,19 @@
 
 player = {
-    "player_min": 1,
-    "player_fg": 2,
-    "player_3pt": 3,
-    "player_ft": 4,
-    "player_o_reb": 5, 
-    "player_d_reb": 6,
-    "player_reb": 7,
-    "player_ast": 8,
-    "player_stl": 9,
-    "player_blk": 10,
-    "player_to": 11,
-    "player_pf": 12,
-    "player_plus_minus": 13,
-    "player_pts": 14,
+    "player_min": 0,
+    "player_fg": 1,
+    "player_3pt": 2,
+    "player_ft": 3,
+    "player_o_reb": 4, 
+    "player_d_reb": 5,
+    "player_reb": 6,
+    "player_ast": 7,
+    "player_stl": 8,
+    "player_blk": 9,
+    "player_to": 10,
+    "player_pf": 11,
+    "player_plus_minus": 12,
+    "player_pts": 13,
 }
 
 overtime_values_periods ={
