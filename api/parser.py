@@ -60,12 +60,19 @@ def get_box_score(soup_obj):
                     players = players + 1
                     roster.append(athlete)
                 else:
-                    print(stats[x])
                     athlete = get_player_stats(stats, x)
                     players = players + 1
                     roster.append(athlete)
+                    names = get_all_player_names(soup_obj)  
         else:
              print("dnps available for this game")
+        
+        if is_no_dnps_available:
+            for name, player in zip(names, roster):
+                roster.append(name) 
+        else:
+            print("dnps available for this game")
+    print(roster)
 
 #this function works identical to get_all_player_names(filename), with caveat that only away player names are returned. "amt" refers to the number of players listed on away team roster
 def get_away_player_names(soup, amt):
