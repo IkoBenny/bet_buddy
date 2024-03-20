@@ -195,9 +195,14 @@ def is_overtime_game(box):
 
 #this helper-function is executed whenever get_away_box_score(filename, stats) is called. 
 def get_player_dnp(box, counter):
-    if box[counter] == "DNP-COACH'S DECISION":
-        return "DNP-COACH'S DECISION"
+    import re
+    p = re.compile( "DNP-*" )
+    m = p.match(box[counter])
+    if m:
+        print('Match found: ', m.group())
+        return box[counter]
     else:
+        print('No match')
         return "done"
 
 #this function parses a box score row. It returns a list in CSV format. 
