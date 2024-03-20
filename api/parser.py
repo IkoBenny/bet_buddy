@@ -43,7 +43,12 @@ def get_away_box_score(soup_obj):
 def get_box_score(soup_obj):
     players = 0
     roster = []
+    roster2 = []
     athlete = [] 
+    dnp_home = 0
+    dnp_away = 0
+    away_players = 0
+    home_players = 0
     
     stats = parse_espn_box(soup_obj)
     print(len(stats))
@@ -52,6 +57,7 @@ def get_box_score(soup_obj):
         print("ot")
     else:
         print("not ot")
+        home = 0
         is_no_dnps_available = (len(stats) - 12) % 14 == 0
         if is_no_dnps_available:
             for x in range(12, len(stats), 14):
@@ -65,14 +71,104 @@ def get_box_score(soup_obj):
                     roster.append(athlete)
                     names = get_all_player_names(soup_obj)  
         else:
-             print("dnps available for this game")
-        
+            print("dnps available for this game")   
+            for x in range(12, len(stats), 14):
+                if x == 12:
+                    athlete = get_player_stats(stats, x)
+                    players = players + 1
+                    roster.append(athlete)
+                else:
+                    if not get_player_stats(stats, x) == "done":
+                        athlete = get_player_stats(stats, x)
+                        players = players + 1
+                        roster.append(athlete)
+                        home = x
+                    else:
+                        break
+            counter2 = len(roster) * 14
+            counter2 = counter2 + 12
+            dnp =0
+            print("stats: " + str(counter2))
+            print("stats: " + str(stats[counter2]))
+            print("before loop")
+            while not get_player_dnp(stats, counter2) == "done":
+                print("startloop")
+                dnp = dnp + 1
+                athlete = get_player_dnp(stats, counter2)
+                roster.append(athlete)   
+                counter2 = counter2 + 1
+            dnp_away = dnp    
+            print("after loop")
+            is_home_no_dnps_available = home % 14 == 0 
+            if is_home_no_dnps_available:
+                for x in range(home + 14, len(stats), 14):
+                    if x == home + 14:
+                        athlete = get_player_stats(stats, x)
+                        players = players + 1
+                        roster.append(athlete)
+                    else:
+                        athlete = get_player_stats(stats, x)
+                        players = players + 1
+                        roster.append(athlete)
+                    print("home: " + stats[home])
+            else:
+                print("dnps available for home")
+                print("home: " + stats[home])
+                dnp_away_count = 0
+                for x in range(home, home + 50 , 1):
+                    if stats[x] == "DNP-COACH'S DECISION":
+                        dnp_away_count = dnp_away_count + 1
+                print("dnp: " + str(dnp_away_count))
+                for x in range(home + dnp_away_count + 14, len(stats), 14):
+                    if x == home + dnp_away_count + 14:
+                        print("expected" + stats[home])
+                        athlete = get_player_stats(stats, x)
+                        players = players + 1
+                        roster2.append(athlete)
+                    else:
+                        if not get_player_stats(stats, x) == "done":
+                            athlete = get_player_stats(stats, x)
+                            players = players + 1
+                            roster2.append(athlete)
+                            home = x
+                        else:
+                            break
+            counter2 = len(roster2) * 14
+            counter2 = counter2 + 12
+            dnp =0
+            print("stats: " + str(counter2))
+            print("stats: " + str(stats[counter2]))
+            print("before loop")
+            while not get_player_dnp(stats, counter2) == "done":
+                print("startloop")
+                dnp = dnp + 1
+                athlete = get_player_dnp(stats, counter2)
+                roster2.append(athlete)   
+                counter2 = counter2 + 1
+            print("after loop")
+            dnp_away = dnp   
         if is_no_dnps_available:
             for name, player in zip(names, roster):
                 roster.append(name) 
         else:
             print("dnps available for this game")
+            home_players = len(roster)
+            away_players = len(roster2)
+            names = get_all_player_names(soup_obj)
+            names_played = []
+            for x in range(0, away_players):
+                names_played.append(names[x])
+            for x in range(away_players, len(names)):
+                names_played.append(names[x])
+            
+    roster.append(roster2)
+    for name, player in zip(names_played, roster):
+        roster.append(name) 
+    print(names_played)
     print(roster)
+    print("x: " + str(home))
+    print("test")
+
 
 #this function works identical to get_all_player_names(filename), with caveat that only away player names are returned. "amt" refers to the number of players listed on away team roster
 def get_away_player_names(soup, amt):
