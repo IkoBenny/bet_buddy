@@ -71,7 +71,7 @@ def get_box_score(soup_obj):
                     names = get_all_player_names(soup_obj)  
         else:
             print("dnps available for this game")   
-            for x in range(12, len(stats), 14):
+            for x in range(14, len(stats), 14):
                 if x == 12:
                     athlete = get_player_stats(stats, x)
                     players = players + 1
